@@ -2,12 +2,13 @@ var socket = io();
 
 // Listening for connection from server
 socket.on('connect', () => {
-    alert('Browser connected to socket.io server!');
+    console.log('Browser connected to socket.io server!');
 });
 
 // Listening for message coming from other client in real - time;
 socket.on('message', (message) => {
-    console.log(message.user + ' said: ' + message.text);
+    var chats = qs('#chat-list ul');
+    chats.innerHTML += `<li>${message.user} : "${message.text}"</li>`;
 });
 
 function qs(query) {
@@ -23,4 +24,4 @@ function handleChatSubmit(e){
     message.value = '';
 }
 
-qs('#chatForm').addEventListener('submit', handleChatSubmit);
+qs('#chat-form').addEventListener('submit', handleChatSubmit);

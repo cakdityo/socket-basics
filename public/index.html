@@ -3,17 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <title>Learning Sockets</title>
+        <link rel="stylesheet" href="/css/main.css">
     </head>
     <body>
         <h1>Simple chat app</h1>
-        <form id="chatForm">
-            <div>
-                <textarea name="textMessage"></textarea>
+        <div id="chat-box">
+            <div id="chat-list">
+                <ul>
+
+                </ul>
             </div>
-            <button>
-                Send
-            </button>
-        </form>
+            <form id="chat-form">
+                <div class="form-group">
+                    <textarea name="textMessage"></textarea>
+                    <button>Send</button>
+                </div>
+            </form>
+        </div>
         <script src="/js/jquery-3.1.1.min.js"></script>
         <script src="/js/socket.io-1.4.5.js"></script>
         <script src="/js/app.js"></script>

@@ -17,11 +17,6 @@ io.on('connection', (socket) => {
     socket.on('message', (message) => {
         io.emit('message', message);
     });
-
-    // Emit a welcome message to a newly connected client
-    socket.emit('message', {
-        text: 'Welcome to the Real - Time World!'
-    });
 });
 
 http.listen(PORT, () => {
