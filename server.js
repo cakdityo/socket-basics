@@ -7,8 +7,21 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-io.on('connection', () => {
+// Listening for connection from client
+// Pass the individual connection instance to socket param
+io.on('connection', (socket) => {
     console.log('User connected via socket.io');
+
+    // Listening for message coming from client
+    // When received, emit the message to all connected clients
+    socket.on('message', (message) => {
+        io.emit('message', message);
+    });
+
+    // Emit a welcome message to a newly connected client
+    socket.emit('message', {
+        text: 'Welcome to the Real - Time World!'
+    });
 });
 
 http.listen(PORT, () => {
