@@ -22,6 +22,34 @@
         </div>
         <script src="/js/jquery-3.1.1.min.js"></script>
         <script src="/js/socket.io-1.4.5.js"></script>
+        <script>
+            (function(){
+
+                function getQueryParam(key) {
+                    var params = window.location.search.substring(1).split('&');
+                    for (var i=0; i<params.length; i++){
+                        let param = params[i].split('=');
+                        if (decodeURIComponent(param[0]) == key) {
+                            return decodeURIComponent(param[1]);
+                        }
+                    }
+                    return undefined;
+                }
+
+                function qs(query) {
+                    if (query) {
+                        return document.querySelector(query);
+                    }
+                }
+
+                var h = {};
+                h.getQueryParam = getQueryParam;
+                h.qs = qs;
+
+                window.h = h;
+
+            })();
+        </script>
         <script src="/js/app.js"></script>
     </body>
 </html>

@@ -12,6 +12,12 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
     console.log('User connected via socket.io');
 
+    socket.on('auth', (auth) => {
+        if (auth.hasOwnProperty('name') && auth.name.length > 1) {
+            socket.broadcast.emit('auth', auth);
+        }
+    });
+
     // Listening for message coming from client
     // When received, emit the message to all connected clients
     socket.on('message', (message) => {
