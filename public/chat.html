@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Learning Sockets</title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <a href="/">Change detail</a>
+        <h1>Simple chat app</h1>
+        <div id="chat-box">
+            <div id="participants">
+                
+            </div>
+            <div id="chat-list">
+                <ul>
+
+                </ul>
+            </div>
+            <form id="chat-form">
+                <div class="form-group">
+                    <textarea name="textMessage"></textarea>
+                    <button>Send</button>
+                </div>
+            </form>
+        </div>
+        <script src="/js/jquery-3.1.1.min.js"></script>
+        <script src="/js/socket.io-1.4.5.js"></script>
+        <script src="/js/helper.js"></script>
+        <script src="/js/app.js"></script>
+    </body>
+</html>
