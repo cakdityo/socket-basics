@@ -18,14 +18,25 @@ io.on('connection', (socket) => {
         // Joining individual socket to specific room
         socket.join(req.room);
         socket.broadcast.to(req.room).emit('message', {
-            user: req.user
+            user: req.user, connected: true
         });
     });
 
     // Listening for message coming from client
     // When received, emit the message to all connected clients
-    socket.on('message', (message) => {
-        io.to(clientInfo[socket.id].room).emit('message', message);
+    socket.on('message', (text) => {
+        io.to(clientInfo[socket.id].room).emit('message', {user: clientInfo[socket.id].user, text: text});
+    });
+
+    socket.on('disconnect', () => {
+        if (clientInfo.hasOwnProperty(socket.id)) {
+            socket.leave(clientInfo[socket.id].room);
+            io.to(clientInfo[socket.id].room).emit('message', {
+                user: clientInfo[socket.id].user,
+                connected: false
+            });
+            delete clientInfo[socket.id];
+        }
     });
 });
 

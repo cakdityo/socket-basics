@@ -5,7 +5,7 @@
         for (var i=0; i<params.length; i++){
             let param = params[i].split('=');
             if (decodeURIComponent(param[0]) == key) {
-                return decodeURIComponent(param[1]).replace('+', ' ');
+                return decodeURIComponent(param[1].replace(/\+/g, ' '));
             }
         }
         return undefined;
